@@ -17,7 +17,7 @@ make all
 Now you can check with find . -name "*.exe" and find . -name "*.dll" all binary files
 for Windows 32-Bit where built correctly. It was a bit of a tedious quest to trial and error
 requested support files but it was doable (you find the required files in the ZIP-Archive in the
-Release section).
+Release section - https://github.com/Dravion/PostgreSQL.11.3_Win32-MinGW-Testbuild/releases/tag/11.3-Custom).
 
 This Custom PostgreSQL binary build is only 12 MBytes big but if you run "initdb.exe" it will
 be upto 90 MBytes in total.
