@@ -1,0 +1,35 @@
+This ist Cross compilation test of the PostgreSQL Database server, version 11.3
+with  build target Windows 7 SP1 (32-Bit). It runs also on any Windows 64-Bit Systems (x86_64) 
+with the WOW64 (Windows on Windows) Compatbility layer like most nowdays 32-Bit Win32 Programs.
+
+#Instructions
+This howto was tested with Ubuntu19 (just commandline, no X11 Graphical Userinterface) 
+using default Distro built in packages only, except a GIT checkout of PostgreSQL 11.3 sources
+
+#Start 
+sudo apt-get install mingw-w64 bison flex libreadline-dev zlib1g-dev
+git clone https://git.postgresql.org/git/postgresql.git
+
+cd postgresql 
+./configure --host=i686-w64-mingw32 --without-zlib
+make all
+
+Now you can check with find . -name "*.exe" and find . -name "*.dll" all binary files
+for Windows 32-Bit where built correctly. It was a bit of a tedious quest to trial and error
+requested support files but it was doable (you find the required files in the ZIP-Archive in the
+Release section).
+
+This Custom PostgreSQL binary build is only 12 MBytes big but if you run "initdb.exe" it will
+be upto 90 MBytes in total.
+
+#Startup
+1)
+SET PGDATA=C:\ProgramData\pgdata11.3   (C:\PrgramData\*.* is recommended because its writable)
+2)
+Unzip pg_11.3_win32.zip to pg_11.3_win32 and move it to C:\Program Files (x86)\pg_11.3_win32
+3) 
+ "C:\Program Files (x86)\pg_11.3_win32\pg_ctl -l logfile start"
+
+Now your Postmaster Backendprocess should be avaiable and you can login with 
+psql -d postgres + ENTER
+
